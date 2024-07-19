@@ -24,6 +24,7 @@ public class CurrencyService {
                 currency.setId(rate.getId());
                 currency.setDate(rate.getDate());
                 currency.setAbbreviation(rate.getAbbreviation());
+                currency.setScale(rate.getScale());
                 currency.setName(rate.getName());
                 currency.setRate(rate.getRate());
                 currencyRepository.save(currency);
