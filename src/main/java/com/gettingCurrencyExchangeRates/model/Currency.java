@@ -7,6 +7,9 @@ import lombok.*;
 
 import java.time.LocalDate;
 
+/**
+ * Data model for currency exchange rates.
+ */
 @Entity
 @Getter
 @Setter

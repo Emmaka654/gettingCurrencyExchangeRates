@@ -13,6 +13,9 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Application for retrieving and managing currency exchange rates.
+ */
 @SpringBootApplication
 public class GettingCurrencyExchangeRatesApplication {
 
@@ -21,6 +24,13 @@ public class GettingCurrencyExchangeRatesApplication {
 
     }
 
+    /**
+     * Initializes the application with a command-line runner to interactively retrieve and display currency exchange rate information.
+     *
+     * @param currencyRepository  The repository for managing currency data.
+     * @param currencyController  The controller for handling currency-related HTTP requests.
+     * @return A CommandLineRunner for interacting with the application via the command line.
+     */
     @Bean
     public CommandLineRunner test(CurrencyRepository currencyRepository, CurrencyController currencyController) {
         return (args) -> {
@@ -44,6 +54,13 @@ public class GettingCurrencyExchangeRatesApplication {
         };
     }
 
+    /**
+     * This method generates a list of currencies based on a specific date.
+     *
+     * @param currencyRepository The repository containing currency data.
+     * @param currencyController The controller to interact with currency data.
+     * @param date The specific date for which currency data is to be fetched.
+     */
     private static void makeListOfCurrencies(CurrencyRepository currencyRepository, CurrencyController currencyController, String date) {
         System.out.println("The url is https://www.nbrb.by/api/exrates/rates?ondate=" + date + "&periodicity=0");
         System.out.println(currencyController.loadData(date));
@@ -61,6 +78,12 @@ public class GettingCurrencyExchangeRatesApplication {
         }
     }
 
+    /**
+     * Validates the input date to ensure it is in the correct format and falls within a valid range.
+     *
+     * @param inputDate The input date to be validated.
+     * @return true if the date is in the correct format and falls within the valid range, false otherwise.
+     */
     public boolean isValidDate(String inputDate) {
         try {
             LocalDate date = LocalDate.parse(inputDate);
